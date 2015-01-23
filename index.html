@@ -14,13 +14,23 @@
         <div id="myContainer">
           
           <div class="navbar-header">
-            <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-music"></span> DevTunes</a>
+            <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-music"></span> SkooTunes</a>
           </div>
           
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
-              <input type="text" class="form-control" ng-model="artist" placeholder="Artist Name" >
-              <button class="btn btn-primary" ng-click="getSongData()"> Submit </button>
+              <input type="text" class="form-control" placeholder='Search iTunes' ng-model="artist" ng-change="getSongData()" />
+              
+              <select class="form-control" ng-model='artist.mediaType' ng-change='getSongData()'>
+                <option value="all" selected=''> All </option>
+                <option value="musicTrack" selected=''> Music </option>
+                <option value="musicVideo" selected=''> Music Video </option>
+                <option value="movie" selected=''> Movie </option>
+                <option value="tvShow" selected=''> TV Show </option>
+                <option value="podcast" selected=''> Podcasts </option>
+              </select>
+
+
             </div>
           </form>
         

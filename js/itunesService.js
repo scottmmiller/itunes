@@ -17,19 +17,41 @@ app.service('itunesService', function($http, $q){
     		method: 'JSONP',
     		url: 'https://itunes.apple.com/search?term=' + artist + '&callback=JSON_CALLBACK'
     	}).then(function(results) {
-    		results = results.data.results;
-    			for(var i = 0; i < results.length; i++) {
-    				results[i].Play = results[i].previewUrl;
-    				results[i].Artist = results[i].artistName;
-    				results[i].Collection = results[i].collectionName;
-    				results[i].AlbumArt = results[i].artworkUrl100;
-    				results[i].Type = results[i].kind;
-    				results[i].CollectionPrice = results[i].collectionPrice;
-    			}
-    		deferred.resolve(results);
-    	}, function(error) {
-    		deferred.reject(error);
-    	});
-    	return deferred.promise;
+    		var results = results.data.results;
+            var parsedArray = [];
+              for(var i = 0; i < results.length; i++) {
+                var songObj = {
+                    Play: results[i].previewUrl,
+                    Song: results[i].trackName,
+                    Artist: results[i].artistName,
+                    Album: results[i].collectionName,
+                    AlbumArt: results[i].artworkUrl100,
+                    TrackLength: results[i].trackTimeMillis,
+                    Type: results[i].kind,
+                    SongPrice: results[i].trackPrice,
+                    AlbumPrice: results[i].collectionPrice
+                }
+                parsedArray.push(songObj);
+              }
+              deferred.resolve(parsedArray);
+        }, function(error) {
+            deferred.reject(error);
+        });
+        return deferred.promise;
     };
 });
+    			// for(var i = 0; i < results.length; i++) {
+    			// 	// var results[i].kind = function(results.kind) {
+    			// 	// 	return results[i].kind.charAt(0).toUpperCase() + results[i].kind.slice(1);
+    			// 	// };
+
+    			// 	results[i].Play = results[i].previewUrl;
+    			// 	results[i].Song = results[i].trackName;
+    			// 	results[i].Artist = results[i].artistName;
+    			// 	results[i].Album = results[i].collectionName;
+    			// 	results[i].AlbumArt = results[i].artworkUrl100;
+    			// 	results[i].TrackLength = results[i].trackTimeMillis;
+    			// 	results[i].Type = results[i].kind;
+    			// 	results[i].SongPrice = results[i].trackPrice;
+    			// 	results[i].AlbumPrice = results[i].collectionPrice;
+    			// }
