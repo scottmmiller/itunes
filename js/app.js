@@ -1,1 +1,4 @@
-var app = angular.module('itunes', ['ngGrid'])
+(function() {
+   'use strict';
+   angular.module('itunes', ['ngGrid']);
+})();

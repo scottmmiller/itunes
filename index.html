@@ -6,22 +6,22 @@
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
- 
-  <body ng-controller="mainCtrl">
-    
+
+  <body ng-controller="mainCtrl as vm">
+
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div id="myContainer">
-          
+
           <div class="navbar-header">
-            <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-music"></span> SkooTunes</a>
+            <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-music"></span> SkooTunes </a>
           </div>
-          
+
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder='Search iTunes' ng-model="artist" ng-change="getSongData()" />
-              
-              <select class="form-control" ng-model='artist.mediaType' ng-change='getSongData()'>
+              <input type="text" class="form-control" placeholder='Search iTunes' ng-model="vm.artist" ng-change="vm.getSongData()" />
+
+              <select class="form-control" ng-model='vm.artist.mediaType' ng-change='vm.getSongData()'>
                 <option value="all" selected=''> All </option>
                 <option value="musicTrack" selected=''> Music </option>
                 <option value="musicVideo" selected=''> Music Video </option>
@@ -33,25 +33,26 @@
 
             </div>
           </form>
-        
+
         </div>
       </div>
     </div>
-    
+
     <div class="panel panel-default">
       <div class="panel-heading"> Your Search Results:</div>
-     <div class="gridStyle" ng-grid="gridOptions" swap-image="defaultInfo.search"></div>
+     <div class="gridStyle" ng-grid="vm.gridOptions" swap-image="defaultInfo.search"></div>
     </div>
-    
+
 
 
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/mainCtrl.js"></script>
     <script src="js/itunesService.js"></script>
-  
+
   </body>
 </html>
